@@ -17,7 +17,7 @@ validate() {
       echo  -e "$2..... $G Success $N" 
     fi  
 }
-check-root() {
+check_root() {
   if [ $USERID -ne 0 ]
    then
     echo -e " Erorr:$R Only Root user access this script $N "
@@ -26,7 +26,7 @@ check-root() {
 }
 mkdir -p /var/log/expense-logs
 echo "Script started executing at :$TIMESTAMP" &>>$LOG_FILE_NAME
-check-root 
+check_root 
 dnf install mysql-server -y &>>$LOG_FILE_NAME
 validate $? "Intalling mysql server"
 systemctl enable mysqld  &>>$LOG_FILE_NAME
