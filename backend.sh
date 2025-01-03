@@ -36,7 +36,7 @@ id expense &>>$LOG_FILE_NAME
 if [ $? -ne 0 ]
 then
     useradd expense &>>$LOG_FILE_NAME
-    VALIDATE $? "Adding expense user"
+    validate $? "Adding expense user"
 else
     echo -e "expense user already exists ... $Y SKIPPING $N"
 fi
@@ -47,11 +47,11 @@ validate $? "downloading the application"
 cd /app
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME
 validate $? "unzipping the application"
-npm install  &>>$LOG_FILE_NAME
+npm install  &>>$LOG_FILE_NAME &>>$LOG_FILE_NAME
 validate $? "Installing the dependencies"
 cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service &>>$LOG_FILE_NAME
-dnf install mysql -y
-validate $? "Installing mysql client"
+dnf install mysql -y &>>$LOG_FILE_NAME
+validate $? "Installing mysql client" 
 mysql -h mysql.daws82s.cloud -uroot -pExpenseApp@1 < /app/schema/backend.sql  &>>$LOG_FILE_NAME
 validate $? "Setting up the transaction schema and table "
 systemctl daemon-reload  &>>$LOG_FILE_NAME
