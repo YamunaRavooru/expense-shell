@@ -33,5 +33,10 @@ systemctl enable mysqld  &>>$LOG_FILE_NAME
 validate $? "Enabling  mysql"
 systemctl start mysqld  &>>$LOG_FILE_NAME
 validate $? "starting mysql"
-mysql_secure_installation --set-root-pass ExpenseApp@1  &>>$LOG_FILE_NAME
-validate $? "setting root password"
+mysql -h mysql.daws82s.cloud -u root -pExpenseApp@1 -e 'show databases;'
+if [ $? -ne 0 ]
+  mysql_secure_installation --set-root-pass ExpenseApp@1  &>>$LOG_FILE_NAME
+  validate $? "setting root password"
+else
+  echo -e " mysql Root password is already setup $Y...SKIPPING $N"   
+fi  
