@@ -45,6 +45,7 @@ validate $? "creating app directory"
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE_NAME
 validate $? "downloading the application"
 cd /app
+rm -rf /app/*
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME
 validate $? "unzipping the application"
 npm install  &>>$LOG_FILE_NAME &>>$LOG_FILE_NAME
