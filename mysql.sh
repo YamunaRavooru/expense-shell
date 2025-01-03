@@ -24,6 +24,7 @@ check-root() {
    exit 1
  fi
 }
+mkdir -p /var/log/expense-logs
 echo "Script started executing at :$TIMESTAMP" &>>$LOG_FILE_NAME
 check-root 
 dnf install mysql-server -y &>>$LOG_FILE_NAME
