@@ -17,7 +17,7 @@ validate() {
       echo  -e "$2..... $G Success $N" 
     fi  
 }
-check-root() {
+check_root() {
   if [ $USERID -ne 0 ]
    then
     echo -e " Erorr:$R Only Root user access this script $N "
