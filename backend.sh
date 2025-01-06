@@ -59,5 +59,5 @@ systemctl daemon-reload  &>>$LOG_FILE_NAME
 validate $? "daemon reloading "
 systemctl enable backend  &>>$LOG_FILE_NAME
 validate $? "Enabling the backend server"
-systemctl start backend  &>>$LOG_FILE_NAME
+systemctl restart backend  &>>$LOG_FILE_NAME
 validate $? "start backend"
