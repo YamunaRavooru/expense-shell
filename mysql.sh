@@ -20,11 +20,11 @@ validate() {
 check_root() {
   if [ $USERID -ne 0 ]
    then
-    echo -e " Erorr:$R Only Root user access this script $N "
+    echo -e " Erorr:$R Only Root user access this script $N " 
    exit 1
  fi
 }
-mkdir -p /var/log/expense-logs
+mkdir -p /var/log/expense-logs  &>>$LOG_FILE_NAME
 echo "Script started executing at :$TIMESTAMP" &>>$LOG_FILE_NAME
 check_root 
 dnf install mysql-server -y &>>$LOG_FILE_NAME
