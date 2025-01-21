@@ -30,7 +30,7 @@ check_root
 dnf install mysql-server -y &>>$LOG_FILE_NAME
 validate $? "Intalling mysql server"
 systemctl enable mysqld  &>>$LOG_FILE_NAME
-validate $? "Enabling  mysql"
+validate  "Enabling  mysql"  $?
 systemctl start mysqld  &>>$LOG_FILE_NAME
 validate $? "starting mysql"
 mysql -h mysql.daws82s.cloud -u root -pExpenseApp@1 -e 'show databases;'  &>>$LOG_FILE_NAME
